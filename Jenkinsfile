@@ -1,9 +1,14 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'build'
+    }
+
+  }
   stages {
-    stage('clone') {
+    stage('build') {
       steps {
-        sh 'git clone https://github.com/nvmsridhar/my-first-app.git C:\\Users\\DELL\\Desktop\\blue'
+        build(job: 'build', propagate: true, quietPeriod: 1)
       }
     }
 
